@@ -1,0 +1,7 @@
+# dsh-file-bridge 的 bundle patch 层。
+- insert:
+    - id: file-bridge
+      name: dsh-file-bridge
+      config:
+        publicBase: "http://111.229.221.200:3080"
+        filesDir: "/root/.dsh/files"
