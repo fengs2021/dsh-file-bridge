@@ -80,6 +80,8 @@ backtick path ──fileMentions──▶ clickable button ──openFile──�
 | HTTP 413 on upload | nginx `client_max_body_size` too small — set 25m |
 | `dir is not defined` / crash loop | missing `node_modules/@deepseek-ai/dsh-tools` in the plugin dir — symlink from the dsh main install |
 | Backtick path not clickable | must be the **tool-call source path** + same turn as the reply |
+| **HTTP 405 on non-image upload** (`transport failure for /files/upload: HTTP 405`) | the host half must register the `/files` RPC channel. Older installations shipped a **host-side stub** that only injected `send_files` — no `/files` handler and no `/dsh-files/*` route, so `POST /files/upload` hit the SPA fallback seat which answers non-GET/HEAD with 405. Fixed by registering `connection.rpc.handle("/files", ...)` + a `webServer.register({kind:"prefix", path:"/dsh-files"})` static route. |
+| **HTTP 401 when downloading `http://host/dsh-files/x.txt`** | nginx `auth_basic` on the outer server block. The file link is rendered as `📎 [x.txt](http://host/dsh-files/x.txt)` and clicking it opens a **fresh navigation**, which does NOT carry the browser's Basic Auth header → 401 error page. Fix: add `location ^~ /dsh-files/ { auth_basic off; allow all; ... }` (or an IP whitelist) so the shared-dir file is publicly downloadable by whatever recipient the link is shared with. |
 
 ## 中文
 
