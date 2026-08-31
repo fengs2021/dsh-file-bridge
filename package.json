@@ -1,7 +1,7 @@
 {
   "name": "dsh-file-bridge",
-  "version": "1.0.2",
-  "description": "DSH 文件收发桥：📎 附件按钮上传（图片原生预览条/文件链接）+ send_files 工具下发 + /dsh-files 静态服务 + 反引号路径一键调起侧边栏 explorer。历史修复：v1.0.1 补全 /files RPC 通道（非图片上传 405）+ /dsh-files 静态路由 + nginx 免认证（下载 401）。v1.0.2 修图片压缩长截图糊字：compressImage 按「最长边≤1600」会把手机长截图（810×14400）宽度压到 91px、文字不可读（症状：图片能上传但识别不对/看不清）——现对宽高比>2.5 的长图放宽最长边到 4096 并保底最短边≥360px。",
+  "version": "1.0.3",
+  "description": "DSH 文件收发桥：📎 附件按钮上传（图片原生预览条/文件链接）+ send_files 工具下发 + /dsh-files 静态服务 + 反引号路径一键调起侧边栏 explorer。历史：v1.0.1 非图片上传 405/下载 401、v1.0.2 长截图压缩糊字。v1.0.3：DSH 图片 admission 限制每边≤2000（maxImageDimension），长截图（810×14400）不能简单放宽上限（会被拒「宽高不能超过2000」），改为**切片**：每片高≤1900、宽保留可读（≥360），分别上传——既不超 2000 又文字清晰。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
