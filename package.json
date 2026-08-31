@@ -1,7 +1,7 @@
 {
   "name": "dsh-file-bridge",
-  "version": "1.0.1",
-  "description": "DSH 文件收发桥：📎 附件按钮上传（图片原生预览条/文件链接）+ send_files 工具下发 + /dsh-files 静态服务 + 反引号路径一键调起侧边栏 explorer。v1.0.1 修复非图片附件上传的 HTTP 405 / 下载 401：host 端补全 /files RPC 通道（upload）+ /dsh-files 静态路由；nginx 增加 location ^~ /dsh-files/ 免认证俾文件链接可下载。",
+  "version": "1.0.2",
+  "description": "DSH 文件收发桥：📎 附件按钮上传（图片原生预览条/文件链接）+ send_files 工具下发 + /dsh-files 静态服务 + 反引号路径一键调起侧边栏 explorer。历史修复：v1.0.1 补全 /files RPC 通道（非图片上传 405）+ /dsh-files 静态路由 + nginx 免认证（下载 401）。v1.0.2 修图片压缩长截图糊字：compressImage 按「最长边≤1600」会把手机长截图（810×14400）宽度压到 91px、文字不可读（症状：图片能上传但识别不对/看不清）——现对宽高比>2.5 的长图放宽最长边到 4096 并保底最短边≥360px。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
